@@ -1,0 +1,158 @@
+<?php
+
+/**
+ * @file
+ * Use this module to learn about Drupal's menu system
+ */
+
+/**
+ * Implements hook_menu()
+ */
+function menufun_menu() {
+
+    $items['menufun'] = array(
+        'title' => 'Greeting',
+        'title callback' => 'menufun_title',
+        'page callback' => 'menufun_hello',
+        'page arguments' => array('Jane', 'Doe'),
+        'access callback' => TRUE,
+        'type' => MENU_NORMAL_ITEM,
+        'weight' => -2,
+        'file' => 'menufun_greeting.inc'
+    );
+
+    $items['menufun/farewell'] = array(
+        'title' => 'Farewell',
+        'page callback' => 'menufun_farewell',
+        'file' => 'menufun_greeting.inc',
+        'access callback' => 'user_access',
+        'access arguments' => array('receive greeting'),
+        'type' => MENU_NORMAL_ITEM,
+        'weight' => -1
+    );
+
+    $items['dynamical/%/from/russia'] = array(
+        'title' => 'Hi',
+        'page callback' => 'dynamical_hello',
+        'file' => 'menufun_greeting.inc',
+        'page arguments' => array(1,3),           // The matched wildcard
+        'access callback' => TRUE
+    );
+
+    $items['toarg/%a_zoo_animal'] = array(
+        'title' => 'to_arg() Example',
+        'page callback' => 'toarg_hello',
+        'page arguments' => array(1),
+        'access callback' => TRUE,
+        'type' => MENU_NORMAL_ITEM,
+        'weight' => -10
+    );
+
+    return $items;
+
+}
+
+/**
+ * Page callback
+ */
+function dynamical_hello($name = null, $country = null) {
+    return t('Hi, @name! You are from @country', array('@name' => $name, '@country' => $country));
+}
+
+function toarg_hello($animal) {
+    return t("Hello, $animal!");
+}
+
+function a_zoo_animal_to_arg($arg) {
+    // $arg is '%' since it is a wildcard
+    // Let's replace it with a zoo animal!
+    return 'tiger';
+}
+
+/**
+ * Title callback
+ */
+function menufun_title() {
+    drupal_set_title(t('Greetings, my friend!'));
+    $now = format_date(time());
+    return t('It is now @time', array('@time' => $now));
+}
+
+/**
+ * Implements hook_permission()
+ */
+function menufun_permission() {
+
+    return array(
+        'receive greeting' => array(
+            'title' => t('Receive a greeting'),
+            'description' => t('Allow users receive a greeting message'),
+        )
+    );
+
+}
+
+/**
+ * Implements hook_menu_alter()
+ *
+ * @param array $items
+ * Menu items keyed by path
+ *
+ * We change the menu Item of User Logout so that the user
+ * could be redirected to drupal.org
+ */
+function menufun_menu_alter(&$items) {
+
+    // Replace the page callback to 'user_logout'
+    // with a call to our own page callback
+    $items['logout']['page callback'] = 'menufun_user_logout';
+    $items['logout']['access callback'] = 'user_is_logged_in';
+
+    // Drupal no longer has to load the user.pages.inc file
+    // since it will be calling out menufun_user_logout(), which
+    // is in our module -- and that's already in scope.
+    unset($items['logout']['file']);
+
+}
+
+/**
+ * Menu callback -
+ * Logs current user out and redirects to drupal.org
+ *
+ * Modified version of user_logout()
+ */
+function menufun_user_logout() {
+
+    global $user;
+
+    watchdog('menufun', 'Session closed for %name', array('%name' => $user->name));
+
+    // Destroy the current session:
+    session_destroy();
+
+    // Run the logout operation of the user hook so modules can respond
+    // to the logout if they want to
+    module_invoke_all('user', 'logout', NULL, $user);
+
+    // Load the anonymous user so the the global $user object will be correct
+    // on any hook_exit() implementatiions.
+    $user = drupal_anonymous_user();
+
+    drupal_goto('http://drupal.org');
+}
+
+/**
+ * Implements hook_menu_link_alter()
+ *
+ * @param $item
+ * Associative array defining a menu link as passed into menu_link_save()
+ *
+ * We will change the Title of the link. The easier way is: Admin > Site Building > Menus
+ */
+function menufun_menu_link_alter(&$item) {
+
+    if ($item['link_path'] == 'user/logout') {
+        $item['link_title'] = 'Sign off';
+    }
+    
+}

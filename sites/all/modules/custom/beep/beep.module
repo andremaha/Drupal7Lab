@@ -1,0 +1,135 @@
+<?php
+/**
+ * @file
+ * Provide a simulated beep in log files.
+ */
+function beep_beep($object = null) {
+
+        watchdog('beep', 'BEEEEEEEEEEEEP!');
+
+}
+
+/**
+ * Implementation of hook_action_info()
+ */
+function beep_action_info() {
+    return array(
+      'beep_beep_action' => array(
+          'type' => 'system',
+          'label' => t('Beep asdf annoyingly'),
+          'configurable' => FALSE,
+          'triggers' => array('node_view', 'node_insert', 'node_update', 'node_delete')
+      ),
+      'beep_multiple_beep_action' => array(
+          'type' => 'system',
+          'label' => t('Beep multiple times'),
+          'configurable' => true,
+          'triggers' => array('node_view', 'node_insert', 'node_update', 'node_delete')
+      )
+    ); 
+}
+
+/**
+ * Implementation of hook_action_info()
+ */
+function user_action_info(){
+    return array(
+        'user_block_user_action' => array(
+            'label' => t('Block current user'),
+            'type' => 'user',
+            'configurable' => false,
+            'triggers' => array(),
+        )
+    );
+}
+
+function user_block_user_action(&$entity, $context = array()) {
+
+    if (isset($entity->uid)) {
+        $uid = $entity->uid;
+    } else if (isset($context['uid'])) {
+        $uid = $context['uid'];
+    } else {
+        global $user;
+        $uid = $user->uid;
+    }
+
+    db_update('users')
+        ->fields(array('status' => 0))
+        ->condition('uid', $uid)
+        ->execute();
+
+    drupal_session_destroy_uid($uid);
+
+    watchdog('action', 'Blocked user %name.', array('%name' => $user->name));
+
+}
+
+/**
+ * Implementation of hook_drupal_alter(). Called by Drupal after
+ * hook_action_info() so modules may modify the action_info array.
+ *
+ * @param array $info
+ *  The result of calling hook_action_info() on all modules.
+ */
+function beep_action_info_alter(&$info) {
+
+    // Make the "Block current user" action available to the comment insert trigger
+    if (!in_array('comment_insert', $info['user_block_user_action']['triggers'])) {
+        $info['user_block_user_action']['triggers'][] = 'comment_insert';
+    }
+
+}
+
+/**
+ * Simulate a beep. A drupal action.
+ */
+function beep_beep_action() {
+    beep_beep();
+}
+
+function beep_multiple_beep_action($object, $context) {
+    for ($i = 0; $i < $context['beeps']; $i++) {
+        beep_beep();
+    }
+}
+
+/**
+ * Form for configurable Drupal action to beep multiple times
+ */
+function beep_multiple_beep_action_form($context) {
+
+    $form['beeps'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Number of beeps'),
+        '#description' => t('Enter the number of times to beep when this action executes'),
+        '#default_value' => isset($context['beeps']) ? $context['beeps'] : '1',
+        '#required' => true
+    );
+
+    return $form;
+
+}
+
+function beep_multiple_beep_action_validate($form, $form_state) {
+
+    $beeps = $form_state['values']['beeps'];
+
+    if (!is_numeric($beeps)) {
+        form_set_error('beeps', t('Please enter a whole number between 0 and 10'));
+    } else if ((int) $beeps > 10) {
+        form_set_error('beeps', t('That would be too annoying. Please choose fewer than 10 beeps.'));
+    } else if ((int) $beeps < 0) {
+        form_set_error('beeps', t('That would likely create a black hole! Beeps must be a positive integer.'));
+    }
+
+}
+
+function beep_multiple_beep_action_submit($form, $form_state) {
+
+    return array(
+      'beeps' => (int) $form_state['values']['beeps']
+    );
+
+}
+

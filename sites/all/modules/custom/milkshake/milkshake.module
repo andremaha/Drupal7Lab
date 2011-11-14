@@ -1,0 +1,77 @@
+<?php
+
+/**
+ * @file
+ * Use this module to learn about Drupal's menu system,
+ * specifically how local tasks work.
+ */
+
+/**
+ * Implements hook_menu()
+ */
+function milkshake_menu() {
+
+    $items['milkshake'] = array(
+        'title' => 'Milkshake flavors',
+        'access arguments' => TRUE,
+        'page callback' => 'milkshake_overview',
+        'type' => MENU_NORMAL_ITEM
+    );
+
+    $items['milkshake/list'] = array(
+        'title' => 'List flavors',
+        'access arguments' => TRUE,
+        'type' => MENU_DEFAULT_LOCAL_TASK,
+        'weight' => 0
+    );
+
+    $items['milkshake/add'] = array(
+        'title' => 'Add flavor',
+        'access arguments' => TRUE,
+        'page callback' => 'milkshake_add',
+        'type' => MENU_LOCAL_TASK,
+        'weight' => 1
+    );
+
+    $items['milkshake/list/fruity'] = array(
+        'title' => 'Fruity flavors',
+        'access arguments' => TRUE,
+        'page callback' => 'milkshake_list',
+        'page arguments' => array(2),       // Passs 'fruity'
+        'type' => MENU_LOCAL_TASK
+    );
+
+    $items['milkshake/list/candy'] = array(
+        'title' => 'Cancy flavors',
+        'access arguments' => TRUE,
+        'page callback' => 'milkshake_list',
+        'page arguments' => array(2),
+        'type' => MENU_LOCAL_TASK
+    );
+
+    return $items;
+
+}
+
+/**
+ * Callbacks
+ */
+function milkshake_overview() {
+
+    $output = t('The following flavors are available...');
+
+    return $output;
+
+}
+
+function milkshake_add() {
+
+    return t('A handy form to add flavors might go here...');
+
+}
+
+function milkshake_list($type) {
+
+    return t('List @type flavors', array('@type' => $type));
+
+}

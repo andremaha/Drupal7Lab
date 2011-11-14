@@ -1,6 +1,8 @@
 <?php
 
-/**
+error_reporting(E_ALL);
+
+/**x`
  * @file
  * The PHP page that serves all page requests on a Drupal installation.
  *
