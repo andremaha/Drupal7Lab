@@ -1,0 +1,5 @@
+name        = DBfun
+description = Demonstrates Data Abstraction Layer of Drupal 7.
+package     = Pro Drupal Development
+core        = 7.x
+files[]     = dbfun.module

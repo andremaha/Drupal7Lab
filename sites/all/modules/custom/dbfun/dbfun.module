@@ -1,0 +1,57 @@
+<?php
+
+/**
+ * @file
+ *
+ * Use this module to learn about Data Abstraction Layer
+ */
+
+/**
+ * Implements hook_menu()
+ */
+function dbfun_menu() {
+
+    $items['dbfun'] = array(
+        'title' => 'DB Fun',
+        'access arguments' => TRUE,
+        'page callback' => 'dbfun_overview',
+        'type' => MENU_NORMAL_ITEM,
+    );
+
+    $items['dbfun/simple'] = array(
+        'title' => 'Performing Simple Queries',
+        'access arguments' => TRUE,
+        'type' => MENU_DEFAULT_LOCAL_TASK,
+        'weight' => 0,
+    );
+
+    $items['dbfun/retrieving'] = array(
+        'title' => 'Retrieving Query Results',
+        'access arguments' => TRUE,
+        'page callback' => 'dbfun_retrieving',
+        'type' => MENU_LOCAL_TASK,
+        'weight' => 1,
+    );
+
+    return $items;
+
+}
+
+/**
+ * Callbacks
+ */
+function dbfun_overview() {
+
+    $output = t('Here are some simple queries: ');
+
+    return $output;
+
+}
+
+function dbfun_retrieving() {
+
+    $output = t('Here is how you retrieve query resulsts');
+
+    return $output;
+
+}

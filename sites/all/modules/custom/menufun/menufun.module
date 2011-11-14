@@ -36,7 +36,8 @@ function menufun_menu() {
         'page callback' => 'dynamical_hello',
         'file' => 'menufun_greeting.inc',
         'page arguments' => array(1,3),           // The matched wildcard
-        'access callback' => TRUE
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK,
     );
 
     $items['toarg/%a_zoo_animal'] = array(
