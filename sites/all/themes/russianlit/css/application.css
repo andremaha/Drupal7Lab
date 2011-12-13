@@ -1,0 +1,380 @@
+/*****************
+RESET
+*****************/
+
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0b1 | 201101
+   NOTE: WORK IN PROGRESS
+   USE WITH CAUTION AND TEST WITH ABANDON */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/* remember to define visible focus styles!
+:focus {
+	outline: ?????;
+} */
+
+/* remember to highlight inserts somehow! */
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*****************
+CLEARFIX
+*****************/
+
+/* The Magnificent Clearfix: Updated to prevent margin-collapsing on child elements.
+   j.mp/bestclearfix */
+.group:before, .group:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
+.group:after { clear: both; }
+/* Fix clearfix: blueprintcss.lighthouseapp.com/projects/15318/tickets/5-extra-margin-padding-bottom-of-page */
+.group { zoom: 1; }
+
+
+/*****************
+FONTS
+*****************/
+@font-face {
+    font-family: 'PlayRegular';
+    src: url('fonts/Play-Regular-webfont.eot');
+    src: url('fonts/Play-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Play-Regular-webfont.woff') format('woff'),
+         url('fonts/Play-Regular-webfont.ttf') format('truetype'),
+         url('fonts/Play-Regular-webfont.svg#PlayRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'PlayBold';
+    src: url('fonts/Play-Bold-webfont.eot');
+    src: url('fonts/Play-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Play-Bold-webfont.woff') format('woff'),
+         url('fonts/Play-Bold-webfont.ttf') format('truetype'),
+         url('fonts/Play-Bold-webfont.svg#PlayBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'JuraLight';
+    src: url('fonts/Jura-Light-webfont.eot');
+    src: url('fonts/Jura-Light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Jura-Light-webfont.woff') format('woff'),
+         url('fonts/Jura-Light-webfont.ttf') format('truetype'),
+         url('fonts/Jura-Light-webfont.svg#JuraLight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'JuraBook';
+    src: url('fonts/Jura-Regular-webfont.eot');
+    src: url('fonts/Jura-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Jura-Regular-webfont.woff') format('woff'),
+         url('fonts/Jura-Regular-webfont.ttf') format('truetype'),
+         url('fonts/Jura-Regular-webfont.svg#JuraBook') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'JuraMedium';
+    src: url('fonts/Jura-Medium-webfont.eot');
+    src: url('fonts/Jura-Medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Jura-Medium-webfont.woff') format('woff'),
+         url('fonts/Jura-Medium-webfont.ttf') format('truetype'),
+         url('fonts/Jura-Medium-webfont.svg#JuraMedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'JuraDemiBold';
+    src: url('fonts/Jura-DemiBold-webfont.eot');
+    src: url('fonts/Jura-DemiBold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Jura-DemiBold-webfont.woff') format('woff'),
+         url('fonts/Jura-DemiBold-webfont.ttf') format('truetype'),
+         url('fonts/Jura-DemiBold-webfont.svg#JuraDemiBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/**********************
+BASE
+**********************/
+html {
+    height: 100%;
+}
+
+body {
+    background: url('../img/bg.png');
+    height: 100%;
+    background-color: white;
+    color: #222;
+    margin: 0 auto;
+    width: 100%;
+}
+
+img {
+    max-width: 100%; /* Images will be resized to the width of their containers */
+}
+
+a {
+    color: #222;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+#wrapper {
+    margin: 0 7.03125%;  /* 24px gutter / 1024px whole width */
+}
+
+/*********************
+TYPOGRAPHY
+**********************/
+body {
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    font-size: 11px/1.5em; /* Using Marc Boulton calculations for harmonic typography */
+    line-height: 2em;
+}
+
+h1, h2, h3 {
+    font-family: 'JuraDemiBold';
+    margin: 2.34375% 0;
+    padding-bottom: 2.34375%;
+}
+
+h1, h4 {
+    font-family: 'JuraLight';
+}
+
+h1#site-name {
+    font-size: 327%;
+}
+
+h1#site-name strong {
+    font-size: 40%;
+}
+
+h1 {
+    font-size: 218%;
+}
+
+h2 {
+    font-size: 164%;
+}
+
+h3 {
+    font-size: 145%;
+}
+
+h4 {
+    font-size: 118%;
+}
+
+nav, footer {
+    font-family: PlayRegular;
+}
+
+p {
+    margin: 24px 0;
+}
+
+
+/**********************
+HEADER
+**********************/
+#main-head {
+    width: 100%;
+    position: relative;
+    min-height: 192px; /* 2 columns width = (48px x 2) / 1024px */
+}
+
+#site-name {
+    width: 100%;
+    position: absolute;
+    top: 30%;
+    left: 0;
+}
+#site-name strong {
+    display: block;
+    text-align: right;
+    margin:  2%;
+    width: 42.58%;
+}
+
+#main-nav {
+    width: 35%;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#main-nav ul li {
+    display: block;
+    float: left;
+    margin: 0 2.34375%;
+}
+
+#main-nav ul li a {
+    display: block;
+    padding-top: 24px;
+}
+
+#main-nav ul li a:hover, #main-nav ul li a.active {
+    background: url('../img/nav-active.png') top center no-repeat;
+}
+
+/**********************
+FEATURE
+**********************/
+#feature {
+    padding:  2.34375%;
+}
+
+#feature > div {
+    margin-left: 30.46875%;
+    padding-left: 2.34375%;
+}
+
+/**********************
+LAST ADDITIONS, SECTIONS
+**********************/
+#last-additions h2, #sections h2, #category h2, #regional h2 {
+    text-align: center;
+    border-bottom: 1px solid #C2C2C2;
+}
+
+#last-additions article, #sections article {
+    width: 30.46875%;
+    padding: 2.34375%;
+    float: left;
+}
+
+#category article, #regional .preview {
+    width: 30.46875%;
+    padding: 1.34375%;
+    float: left;
+}
+
+#sections article:nth-child(2),
+#last-additions article:nth-child(2) {
+    margin-left: -2.34375%;
+}
+
+#last-additions article:last-child,
+#sections article:last-child {
+    margin-right: -4.6875%;
+}
+
+#last-additions article h4, #category article h4 {
+    text-align: right;
+}
+
+
+/*********************
+CATEGORY PAGE
+*********************/
+
+.other-articles-in-category  {
+    width: 30.46875%;
+    margin-right: 2.34375%;
+    float: left;
+}
+
+.other-articles-in-category article {
+    padding: 2.34375%;
+}
+
+.article-page {
+    width: 65%;
+    float: left;
+}
+
+/*********************
+FOOTER
+*********************/
+footer#main-footer {
+    margin-top: 2.34375%;
+    padding:  2.34375%;
+}
+
+footer#main-footer p {
+    text-align: right;
+}
+
+/*********************
+COOL EFFECTS
+*********************/
+#feature {
+    background-color: rgba(255,255,255,0.3);
+    border-radius: 12px;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+}
+
+#last-additions article:hover, #sections article:hover, #category article:hover, .other-articles-in-category article:hover, #regional .preview:hover {
+    background-color: rgba(255,255,255,0.4);
+    border-radius: 12px;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.3);
+}
+
+footer#main-footer {
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 12px 12px 0 0;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.3);
+}
