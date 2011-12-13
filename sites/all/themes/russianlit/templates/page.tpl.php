@@ -147,6 +147,7 @@
     </div></div> <!-- /#triptych, /#triptych-wrapper -->
   <?php endif; ?>
 
+  <?php if(!$is_front):?>
   <div id="main-wrapper" class="clearfix"><div id="main" class="clearfix">
 
     <?php if ($breadcrumb): ?>
@@ -199,6 +200,7 @@
     <?php endif; ?>
 
   </div></div> <!-- /#main, /#main-wrapper -->
+  <?php endif;?>
 
 
   <div id="footer-wrapper"><div class="section">

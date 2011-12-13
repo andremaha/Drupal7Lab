@@ -343,7 +343,15 @@ CATEGORY PAGE
 
 .article-page {
     width: 65%;
+    margin-right: 4.6875%;
     float: left;
+}
+
+/*********************
+REGIONAL
+*********************/
+#regional h3 {
+    text-align: center;
 }
 
 /*********************
