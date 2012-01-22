@@ -11,7 +11,7 @@ html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
+small, strike, strong, sub, /*sup,*/ tt, var,
 b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
@@ -35,7 +35,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 }
-ol, ul {
+ul {
 	list-style: none;
 }
 blockquote, q {
@@ -177,7 +177,7 @@ a {
     text-decoration: none;
 }
 a:hover {
-    text-decoration: underline;
+    text-shadow: graytext 1px 1px 2px;
 }
 
 #wrapper {
@@ -194,13 +194,13 @@ body {
 }
 
 h1, h2, h3 {
-    font-family: 'JuraDemiBold';
+    font-family: 'PlayRegular';
     margin: 2.34375% 0;
     padding-bottom: 2.34375%;
 }
 
 h1, h4 {
-    font-family: 'JuraLight';
+    font-family: 'PlayRegular';
 }
 
 h1#site-name {
@@ -243,10 +243,12 @@ HEADER
     width: 100%;
     position: relative;
     min-height: 192px; /* 2 columns width = (48px x 2) / 1024px */
+    margin: 0 0 8px;
+    border-bottom: 8px solid #DE1B1B;
 }
 
 #site-name {
-    width: 100%;
+    width: 496px;
     position: absolute;
     top: 30%;
     left: 0;
@@ -255,7 +257,10 @@ HEADER
     display: block;
     text-align: right;
     margin:  2%;
-    width: 42.58%;
+}
+
+#site-name a {
+    text-decoration: none;
 }
 
 #main-nav {
@@ -292,12 +297,18 @@ FEATURE
     padding-left: 2.34375%;
 }
 
+#feature p a  {
+    color: white;
+    text-decoration: none;
+}
+
 /**********************
 LAST ADDITIONS, SECTIONS
 **********************/
-#last-additions h2, #sections h2, #category h2, #regional h2 {
+#last-additions h2, #sections h2, #category h2, #regional h2, #translations h2 {
     text-align: center;
-    border-bottom: 1px solid #C2C2C2;
+    border-bottom: 4px solid #DE1B1B;
+    margin-top: 4.6875%;
 }
 
 #last-additions article, #sections article {
@@ -306,8 +317,9 @@ LAST ADDITIONS, SECTIONS
     float: left;
 }
 
-#category article, #regional .preview {
+#category article, #regional .preview, #translations .preview {
     width: 30.46875%;
+    min-height: 205px;
     padding: 1.34375%;
     float: left;
 }
@@ -348,21 +360,28 @@ CATEGORY PAGE
 }
 
 /*********************
-REGIONAL
+REGIONAL, TRANSLATIONS BLOCKS
 *********************/
-#regional h3 {
+#regional h3, #translations h3 {
     text-align: center;
+}
+#regional li {
+    margin: 4.6875% 0;
+    line-height: 1.5em;
+}
+#translations .preview {
+    min-height: 50px;
 }
 
 /*********************
 FOOTER
 *********************/
-footer#main-footer {
+#main-footer {
     margin-top: 2.34375%;
     padding:  2.34375%;
 }
 
-footer#main-footer p {
+#main-footer p {
     text-align: right;
 }
 
@@ -370,19 +389,45 @@ footer#main-footer p {
 COOL EFFECTS
 *********************/
 #feature {
+    background: url('../img/bg-feature.jpg');
+    color: white;
     background-color: rgba(255,255,255,0.3);
     border-radius: 12px;
     box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
 }
 
-#last-additions article:hover, #sections article:hover, #category article:hover, .other-articles-in-category article:hover, #regional .preview:hover {
+#feature p a:hover {
+    text-shadow: graytext 1px 2px 1px;
+}
+
+#last-additions article:hover, #sections article:hover, #category article:hover, .other-articles-in-category article:hover, #regional .preview:hover,  #translations .preview:hover {
     background-color: rgba(255,255,255,0.4);
     border-radius: 12px;
     box-shadow: 1px 2px 3px rgba(0,0,0,0.3);
 }
 
-footer#main-footer {
+#main-footer {
     background-color: rgba(0,0,0,0.1);
     border-radius: 12px 12px 0 0;
     box-shadow: 1px 2px 3px rgba(0,0,0,0.3);
+}
+
+
+sup a {
+    color: #DE1B1B;
+}
+
+/*********************
+SUBTHEME OVERRIDES
+*********************/
+#sidebar-second {
+  float: left;
+  width: 30%;
+}
+
+/**
+* Cover Image
+*/
+.field-type-image img {
+    float: right;
 }

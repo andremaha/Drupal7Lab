@@ -150,3 +150,37 @@ function russianlit_field__taxonomy_term_reference($variables) {
 
   return $output;
 }
+
+/**
+ * Recent content block
+ */
+function russianlit_node_recent_content($variables) {
+  $node = $variables['node'];
+
+  $output = '<div class="node-title">';
+  $output .= l($node->title, 'node/' . $node->nid);
+  $output .= theme('mark', array('type' => node_mark($node->nid, $node->changed)));
+  $output .= '</div>';
+
+  return $output;
+}
+
+/**
+ * Image resize for covers
+ */
+function russianlit_image_style($variables) {
+  // Determine the dimensions of the styled image.
+  $dimensions = array(
+    'width' => $variables['width'] > 400 ? 400 : $variables['width'],
+    'height' => $variables['height'] > 600 ? 600 : $variables['height'],
+  );
+
+  image_style_transform_dimensions($variables['style_name'], $dimensions);
+
+  $variables['width'] = $dimensions['width'];
+  $variables['height'] = $dimensions['height'];
+
+  // Determine the url for the styled image.
+  $variables['path'] = image_style_url($variables['style_name'], $variables['path']);
+  return theme('image', $variables);
+}
