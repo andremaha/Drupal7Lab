@@ -184,3 +184,20 @@ function russianlit_image_style($variables) {
   $variables['path'] = image_style_url($variables['style_name'], $variables['path']);
   return theme('image', $variables);
 }
+
+/**
+ * FIX ISSUES WITH gMAP
+ *
+ * @param $variables
+ * @return void
+ */
+/*function russianlit_preprocess_page(&$variables) {
+  drupal_add_js('http://maps.google.com/maps?file=api&v=2.115&key='.variable_get('googlemap_api_key').'&;hl=en');
+  drupal_add_js(drupal_get_path('module', 'gmap').'/js/gmap.js');
+  drupal_add_js(drupal_get_path('module', 'gmap').'/js/icon.js');
+  drupal_add_js(drupal_get_path('module', 'gmap').'/js/marker.js');
+  drupal_add_js(drupal_get_path('module', 'gmap').'/js/highlight.js');
+  drupal_add_js(drupal_get_path('module', 'gmap').'/js/gmap_markers.js');
+  drupal_add_js(drupal_get_path('module', 'gmap').'/js/gmap_marker.js');
+  drupal_add_js(drupal_get_path('module', 'gmap').'/js/poly.js');
+}*/

@@ -84,7 +84,7 @@
  * @see bartik_process_page()
  */
 ?>
-<div id="wrapper">
+<div class="ae" id="wrapper">
     <header id="main-head">
         <?php if ($main_menu): ?>
         <nav id="main-nav">

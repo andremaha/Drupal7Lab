@@ -431,3 +431,10 @@ SUBTHEME OVERRIDES
 .field-type-image img {
     float: right;
 }
+
+/**
+* Hide gMap field in articles
+*/
+.location-locations-header, .location-locations-wrapper {
+    display: none;
+}
